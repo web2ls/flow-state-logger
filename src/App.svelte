@@ -1,13 +1,28 @@
 <script>
-	export let name;
+	import Container from './Container.svelte';
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
+<div>
+	<Container />
+</div>
 
 <style>
+	:global(body) {
+		overflow: hidden;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	:global(html) {
+		overflow: hidden;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+
 	main {
 		text-align: center;
 		padding: 1em;
