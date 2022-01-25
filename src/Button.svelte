@@ -1,8 +1,11 @@
 <script>
 	export let label;
+	export let onClickHandler;
 </script>
 
-<button type="button" class="control-button">{label}</button>
+<button type="button" class="control-button" on:click={onClickHandler}
+	>{label}</button
+>
 
 <style>
 	.control-button {

@@ -2,13 +2,34 @@
 	import Controls from './Controls.svelte';
 	import Header from './Header.svelte';
 	import Timer from './Timer.svelte';
+
+	let inProcess = false;
+	let timerValue = 1500000;
+	let intervalId = null;
+	const SEC_IN_MS = 1000;
+
+	function startTimer() {
+		intervalId = setInterval(intervalAction, 1000);
+		inProcess = true;
+	}
+
+	function intervalAction() {
+		const newValue = timerValue - SEC_IN_MS;
+		timerValue = newValue;
+	}
+
+	function stopTimer() {
+		inProcess = false;
+		timerValue = 1500000;
+		clearInterval(intervalId);
+	}
 </script>
 
 <div class="container">
 	<Header />
 	<div class="timer-container">
-		<Timer />
-		<Controls />
+		<Timer value={timerValue} />
+		<Controls {inProcess} {startTimer} {stopTimer} />
 	</div>
 </div>
 
