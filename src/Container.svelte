@@ -3,11 +3,15 @@
 	import Header from './Header.svelte';
 	import Timer from './Timer.svelte';
 
+	import { getTime } from './helpers';
+
 	let inProcess = false;
 	let inPause = false;
 	let timerValue = 1500000;
 	let intervalId = null;
 	const SEC_IN_MS = 1000;
+
+	document.title = 'Flow State Logger';
 
 	function startTimer() {
 		intervalId = setInterval(intervalAction, 1000);
@@ -29,6 +33,8 @@
 	function intervalAction() {
 		const newValue = timerValue - SEC_IN_MS;
 		timerValue = newValue;
+		const timeResult = getTime(newValue);
+		document.title = `${timeResult[0]} : ${timeResult[1]}`;
 	}
 
 	function spaceHitHandler() {
