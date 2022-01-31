@@ -22,6 +22,7 @@
 	function stopTimer() {
 		inProcess = false;
 		timerValue = 1500000;
+		document.title = 'Flow State Logger';
 		clearInterval(intervalId);
 	}
 
@@ -32,6 +33,13 @@
 
 	function intervalAction() {
 		const newValue = timerValue - SEC_IN_MS;
+
+		if (newValue <= 0) {
+			stopTimer();
+			document.title = 'Job well done';
+			return;
+		}
+
 		timerValue = newValue;
 		const timeResult = getTime(newValue);
 		document.title = `${timeResult[0]} : ${timeResult[1]}`;
